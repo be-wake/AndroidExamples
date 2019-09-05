@@ -1,17 +1,29 @@
 package com.example.a30_days_of_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.TextViewCompat;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.Layout;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StrikethroughSpan;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Text_View extends AppCompatActivity {
 
@@ -31,7 +43,7 @@ public class Text_View extends AppCompatActivity {
     };
     ColorStateList colorStateList=new ColorStateList(states,colors);
  //
-    TextView textView;
+    TextView textView,sectextView;
     //Declaring a textView
 
     @Override
@@ -40,15 +52,63 @@ public class Text_View extends AppCompatActivity {
         setContentView(R.layout.activity_text_view);
 
         textView=findViewById(R.id.hellotext);
+        sectextView=findViewById(R.id.hellotex3);
 
         changeTextView(textView);
-        changeStyleColor(textView);
+        changeStyleAndColor(textView);
+        variousTextOperations(textView);
 
     }
 
+    private void variousTextOperations(TextView textView) {
+        //Insert HTML formatting
+
+        String formattedText = "This <i>is</i> a <b>link</b> of <a href='http://foo.com'>html</a>";
+        // or getString(R.string.htmlFormattedText);
+
+            textView.setText(Html.fromHtml(formattedText));
+
+        //Displaying Images within a TextView
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_people_black_24dp,0,0,0);
+
+        //Or
+        Drawable img = getApplicationContext().getResources().getDrawable( R.drawable.ic_people_black_24dp );
+        textView.setCompoundDrawablesWithIntrinsicBounds( img, null, null, null);
 
 
-    private void changeStyleColor(TextView textView) {
+        //Using Span for styling of text
+        String string=textView.getText().toString();
+        //Span that will change the text color
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(
+                getResources().getColor(android.R.color.holo_blue_dark));
+
+        // Use a SpannableStringBuilder so that both the text and the spans are mutable
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+
+        spannableStringBuilder.setSpan(foregroundColorSpan,0,string.length(), Spanned.SPAN_COMPOSING);
+
+        //Strike the text
+        StrikethroughSpan strike=new StrikethroughSpan();
+        spannableStringBuilder.setSpan(strike,0,string.length(),Spanned.SPAN_COMPOSING);
+
+        textView.setText(spannableStringBuilder, TextView.BufferType.EDITABLE);
+        //
+
+        //ClickableSpan
+
+        SpannableString spannableString=new SpannableString("Hello Android");
+
+        ClickableSpan clickableSpan=new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                Toast.makeText(getApplicationContext(), "Hello Android", Toast.LENGTH_SHORT).show();
+            }
+        };
+        spannableString.setSpan(clickableSpan, 10, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+
+
+    private void changeStyleAndColor(TextView textView) {
         //Change TextColor
         textView.setTextColor(Color.rgb(255,0,0));
         textView.setTextColor(Color.GREEN);
@@ -92,6 +152,36 @@ public class Text_View extends AppCompatActivity {
 
         // If you want to keep the previous typeface and don't want to lose previously applied then
         textView.setTypeface(textView.getTypeface(), Typeface.BOLD_ITALIC);
+
+
+        //Text Truncation
+        //Change ellipsize
+
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+
+        //setMaxLines
+        textView.setMaxLines(6);
+        //
+        //Add shadow to text
+         /*
+                    public void setShadowLayer (float radius, float dx, float dy, int color)
+
+                    Gives the text a shadow of the specified blur radius and
+                    color, the specified distance from its drawn position.
+
+                    shadowColor
+                        Place a blurred shadow of text underneath the text,
+                        drawn with the specified color.
+                    shadowDx
+                        Horizontal offset of the text shadow.
+                    shadowDy
+                        Vertical offset of the text shadow.
+                    shadowRadius
+                        Blur radius of the text shadow.
+                 */
+
+        textView.setShadowLayer(1.5f,0.5f,0.5f,Color.CYAN);
+
         //Change Gravity
         textView.setGravity(Gravity.CENTER|Gravity.BOTTOM);
 
