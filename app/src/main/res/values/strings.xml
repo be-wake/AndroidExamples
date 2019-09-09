@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">30-days-of-Android</string>
     <string name="simple_text">Hi Every One </string>
+    <string name="history">The history and versions of android are interesting to know.\n The code names of android ranges from A to J currently, such as Aestro, Blender, Cupcake, Donut, Eclair, Froyo, Gingerbread, Honeycomb, Ice Cream Sandwitch, Jelly Bean, KitKat and Lollipop. Let\'s understand the android history in a sequence.</string>
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Image_View">
+<!--Scale Type-->
+<!--    https://developer.android.com/reference/android/widget/ImageView.ScaleType-->
+
+    <ImageView
+        android:id="@+id/snake1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/snake1" />
+</LinearLayout>
