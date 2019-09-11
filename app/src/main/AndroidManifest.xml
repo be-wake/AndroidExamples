@@ -11,9 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Image_View"></activity>
+        <activity android:name=".Text_View"></activity>
         <activity android:name=".EditText_View" />
-        <activity android:name=".Text_View">
+        <activity android:name=".Image_View">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
