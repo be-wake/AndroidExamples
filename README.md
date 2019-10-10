@@ -1,3 +1,2 @@
-# 30daysofAndroid
 
-I am starting a challenge for making parts of android app every four days of week
+I am creating a document for android in which there will be example/code of every method,functionalities and properties of every view ,buttons, layouts and everything.
