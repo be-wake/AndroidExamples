@@ -86,8 +86,4 @@ public class Image_View extends AppCompatActivity {
         else
             return stretch_width;
     }
-    
-    public ColorFilter getColorFilter (){
-        setColorFilter(android.graphics.ColorFilter);//Returns the active color filter for this ImageView.
-    }
 }
