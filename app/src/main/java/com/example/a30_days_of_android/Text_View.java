@@ -78,7 +78,6 @@ public class Text_View extends AppCompatActivity {
 
         //Using Span for styling of text
         String string=textView.getText().toString();
-        
         //Span that will change the text color
         ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(
                 getResources().getColor(android.R.color.holo_blue_dark));
